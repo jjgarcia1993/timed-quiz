@@ -1,6 +1,8 @@
 var startButton = document.getElementById('start-btn')
-var questionContainerEl = document.getElementById('question-container')
 
+var questionContainerEl = document.getElementById('question-container')
+var questionEl = document.getElementById('question')
+var answerEL = document.getElementById('answer-buttons')
 var randomQuestion
 var questionIndex
 
@@ -8,8 +10,9 @@ startButton.addEventListener('click', startGame)
 
 
 function startGame() {
-    console.log('start!')
     startButton.classList.add('hide')
+    questionContainerEl.classList.remove('hide')
+    answerEL.classList.remove('hide')
     randomQuestion = questionBank.sort(() => Math.random() - .5)
     questionIndex = 0
     nextQuestion()
@@ -17,8 +20,30 @@ function startGame() {
 
 
 function nextQuestion() {
+    resetState()
+    showQuestion(randomQuestion[questionIndex])
 }
 
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerEl.appendChild(button)
+    })
+}
+
+function resetState() {
+    nextButton.classList.add('hide')
+    while (answerEL.firstChild) {
+        answerEL
+    }
+}
 
 function selectAnswer() {
 
@@ -26,60 +51,96 @@ function selectAnswer() {
 
 
 
-
-
-
-
 //Question bank
 var questionBank = [
     {
         question: 'Which planet in our solar system is the smallest?',
-        response: ['Earth', 'Venus', 'Pluto', 'Mercury'],
-        answer: 'Mercury'
+        answers: [
+            { text: 'Earth', correct: false },
+            { text: 'Venus', correct: false },
+            { text: 'Pluto', correct: false },
+            { text: 'Mercury', correct: true }
+        ]
     },
     {
         question: 'Titan is the name of a moon that orbits which planet?',
-        response: ['Saturn', 'Jupiter', 'Uranus', 'Earth'],
-        answer: 'Saturn'
+        answers: [
+            { text: 'Saturn', correct: true },
+            { text: 'Jupiter', correct: false },
+            { text: 'Uranus', correct: false },
+            { text: 'Earth', correct: false }
+        ]
     },
     {
         question: 'What protects Earth from meteoroids and radiation?',
-        response: ['The Atmosphere', 'The Moon', 'The Sun', 'The Asteroid Belt'],
-        answer: 'The Atmosphere'
+        answers: [
+            { text: 'The Atmosphere', correct: true },
+            { text: 'The Moon', correct: false },
+            { text: 'The Sun', correct: false },
+            { text: 'The Asteroid Belt', correct: false }
+        ]
     },
     {
         question: 'How many of our planets can be seen without a telescope?',
-        response: ['3', '7', '2', '5'],
-        answer: '5'
+        answers: [
+            { text: '3', correct: false },
+            { text: '7', correct: false },
+            { text: '2', correct: false },
+            { text: '5', correct: true }
+        ]
     },
     {
         question: 'How long is one year on Jupiter?',
-        response: ['5 Earth Years', '12 Earth Years', '27 Earth Years', '62 Earth Years'],
-        answer: '12 Earth Years'
+        answers: [
+            { text: '5 Earth Years', correct: false },
+            { text: '12 Earth Years', correct: true },
+            { text: '27 Earth Years', correct: false },
+            { text: '62 Earth Years', correct: false }
+        ]
     },
     {
         question: 'How many moons does Earth have?',
-        response: ['2', '3', '1', '1.5'],
-        answer: '1'
+        answers: [
+            { text: '2', correct: false },
+            { text: '3', correct: false },
+            { text: '1', correct: true },
+            { text: '1.5', correct: false }
+        ]
     },
     {
         question: 'How old is the sun?',
-        response: ['10 million years', '878 billion years', '3 billion years', '4.6 billion years'],
-        answer: '4.6 billion years'
+        answers: [
+            { text: '10 million years', correct: false },
+            { text: '878 billion years', correct: false },
+            { text: '3 billion years', correct: false },
+            { text: '4.6 billion years', correct: true }
+        ]
     },
     {
         question: 'How many moons are currently in our solar system?',
-        response: ['181', '67', '677', '210'],
-        answer: '181'
+        answers: [
+            { text: '181', correct: true },
+            { text: '67', correct: false },
+            { text: '677', correct: false },
+            { text: '210', correct: false }
+        ]
     },
     {
         question: 'How long does it take the suns rays to reach Earth?',
-        response: ['3 days', '1 week', 'A few hours', 'Eight minutes'],
-        answer: 'Eight minutes'
+        answers: [
+            { text: '3 days', correct: false },
+            { text: '1 week', correct: false },
+            { text: 'A few hours', correct: false },
+            { text: 'Eight minutes', correct: true }
+        ]
     },
     {
         question: 'Who was the first person to walk on the moon?',
-        response: ['Lance Armstrong', 'Shaquille ONeal', 'Neil Armstrong', 'Louis Armstrong'],
-        answer: 'Neil Armstrong'
+        answers: [
+            { text: 'Lance Armstrong', correct: false },
+            { text: 'Shaquille ONeal', correct: false },
+            { text: 'Neil Armstrong', correct: true },
+            { text: 'Louis Armstrong', correct: false }
+        ]
     },
 ]

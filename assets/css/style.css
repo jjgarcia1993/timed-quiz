@@ -22,6 +22,7 @@ body {
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(var(--primary-color), var(--secondary-color));
+
 }
 
 body.right {
@@ -40,6 +41,7 @@ body.wrong {
     padding: 10px;
     box-shadow: 4px 4px 10px 4px;
     text-align: center;
+
 }
 
 .btn-grid {
@@ -59,8 +61,7 @@ body.wrong {
 
 .btn:hover {
     background-color: #19034d;
-    font-size: 2rem;
-    color: rgb(168, 98, 248);
+    color: rgb(168, 98, 248)
 }
 
 .btn.correct {
@@ -77,6 +78,13 @@ body.wrong {
     font-size: 1.6rem;
     font-weight: 16px;
     padding: 10px 20px;
+}
+
+.start-btn:hover,
+.next-btn:hover {
+    background-color: #19034d;
+    font-size: 2rem;
+    color: rgb(168, 98, 248)
 }
 
 .controls {
