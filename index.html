@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <h1>Quiz of Truth</h1>
+  <h1>Our Solar System Quiz</h1>
 
   <!-- Quiz container -->
   <div id="container">
@@ -18,10 +18,10 @@
     <div class="questions">
       <h2 id="questions"></h2>
       <ol type="A">
-        <li class="option"><span id="option0"></span></li>
-        <li class="option"><span id="option1"></span></li>
-        <li class="option"><span id="option2"></span></li>
-        <li class="option"><span id="option3"></span></li>
+        <li class="option"><span id="option0" onclick="calcScore(this)"></span></li>
+        <li class="option"><span id="option1" onclick="calcScore(this)"></span></li>
+        <li class="option"><span id="option2" onclick="calcScore(this)"></span></li>
+        <li class="option"><span id="option3" onclick="calcScore(this)"></span></li>
       </ol>
       <h4 id="stat"></h4>
     </div>
@@ -35,25 +35,24 @@
     <div id="scoreboard">
       <h2 id="score-title">Your Results!</h2>
       <h2 id="score"></h2>
-      <button type="button" id="score-btn">Return</button>
-      <button type="button" id="check-answer">Check Answers</button>
+      <button type="button" id="score-btn" onclick="backToQuiz()">Return</button>
+      <button type="button" id="check-answer" onclick="checkAnswer()">Check Answers</button>
     </div>
 
 
     <!-- answers section -->
     <div id="answerBank">
       <h2>Answers :</h2>
-      <ol type="1">
+      <ol type="1" id="answers">
 
       </ol>
-      <button type="button" id="score-btn">Return</button>
+      <button type="button" id="score-btn" onclick="backToQuiz()">Return</button>
     </div>
-  </div>
 
 
 
-  <!-- javascript link -->
-  <script src="./assets/js/script.js"></script>
+    <!-- javascript link -->
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
