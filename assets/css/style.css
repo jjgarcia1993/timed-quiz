@@ -1,13 +1,19 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 :root {
-    background: linear-gradient(rgb(19, 149, 224),rgb(9, 24, 104));
+    --primary-color: #4bbedb;
+    --secondary-color: #081874;
+    --tertiary-color: #10a023;
+    --quatenary-color: #ad1111;
 }
 
 body {
+    font-size: 2rem;
     padding: 0;
     margin: 0;
     display: flex;
@@ -15,4 +21,62 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(var(--primary-color), var(--secondary-color));
+}
+
+body.right {
+    color: var(--tertiary-color);
+}
+
+body.wrong {
+    columns: var(--quatenary-color);
+}
+
+.container {
+    width: 500px;
+    max-width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 4px 4px 10px 4px;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn {
+    background-color: #8ee8ff;
+    font-size: 1.2rem;
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 10px 12px;
+}
+
+.btn.correct {
+    background-color: var(--tertiary-color);
+
+}
+
+.btn.wrong {
+    background-color: var(--quatenary-color);
+}
+
+.start-btn, .next-btn {
+    font-size: 1.6rem;
+    font-weight: 16px;
+    padding: 10px 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hide {
+    display: none;
 }
