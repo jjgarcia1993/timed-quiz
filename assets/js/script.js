@@ -1,22 +1,25 @@
 var startButton = document.getElementById('start-btn')
-
+var nextButton = document.getElementById('next-btn')
 var questionContainerEl = document.getElementById('question-container')
 var questionEl = document.getElementById('question')
-var answerEL = document.getElementById('answer-buttons')
-var randomQuestion
-var questionIndex
+var answerEl = document.getElementById('answer-buttons')
+let randomQuestion
+let questionIndex = 0
 
 startButton.addEventListener('click', startGame)
 
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
 
 function startGame() {
     startButton.classList.add('hide')
     questionContainerEl.classList.remove('hide')
-    answerEL.classList.remove('hide')
-    randomQuestion = questionBank.sort(() => Math.random() - .5)
-    questionIndex = 0
-    nextQuestion()
-}
+    answerEl.classList.remove('hide')
+    randomQuestion = questionEl.sort(() => Math.random() - .5)
+    showQuestion()
+};
 
 
 function nextQuestion() {
@@ -25,30 +28,55 @@ function nextQuestion() {
 }
 
 function showQuestion(question) {
-    questionElement.innerText = question.question
+    questionEl.innerText = question.question
     question.answers.forEach(answer => {
-        const button = document.createElement('button')
+        var button = document.createElement('button')
         button.innerText = answer.text
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
-        }
+        }questionBank
         button.addEventListener('click', selectAnswer)
         answerEl.appendChild(button)
     })
 }
 
 function resetState() {
+    clearStatusClass(document.body)
     nextButton.classList.add('hide')
-    while (answerEL.firstChild) {
-        answerEL
+    while (answerEl.firstChild) {
+        answerEl.removeChild(answerEl.firstChild)
     }
 }
 
-function selectAnswer() {
-
+function selectAnswer(e) {
+    var selectedButton = e.target
+    var correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerEl.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove('hide')
+    } else {
+        startButton.innerText = 'Restart'
+        startButton.classList.remove('hide')
+    }
 }
 
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('wrong')
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+}
 
 
 //Question bank
