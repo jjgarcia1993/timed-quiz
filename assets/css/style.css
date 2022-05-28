@@ -72,7 +72,8 @@ body.wrong {
     background-color: var(--quatenary-color);
 }
 
-.start-btn, .next-btn {
+.start-btn,
+.next-btn {
     font-size: 1.6rem;
     font-weight: 16px;
     padding: 10px 20px;

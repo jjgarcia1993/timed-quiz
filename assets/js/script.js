@@ -1,10 +1,22 @@
-function startGame () {
+var startButton = document.getElementById('start-btn')
+var questionContainerEl = document.getElementById('question-container')
 
+var randomQuestion
+var questionIndex
+
+startButton.addEventListener('click', startGame)
+
+
+function startGame() {
+    console.log('start!')
+    startButton.classList.add('hide')
+    randomQuestion = questionBank.sort(() => Math.random() - .5)
+    questionIndex = 0
+    nextQuestion()
 }
 
 
-function setNextQuestion() {
-
+function nextQuestion() {
 }
 
 
