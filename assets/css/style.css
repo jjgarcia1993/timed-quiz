@@ -1,0 +1,51 @@
+:root {
+    background-color: rgb(75, 140, 160)
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+.links {
+    padding: 2rem 0;
+}
+
+a {
+    font-size: 1rem;
+}
+
+a:hover {
+    font-size: 2rem;
+    color: black;
+    box-shadow: 6px 8px rgba(4, 33, 65, 0.6);
+}
+
+.container {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem 0;
+    padding: 4rem 0;
+}
+
+.btn {
+    color: black;
+    font-size: 1.5rem;
+    padding: 1.5rem 10rem;
+    width: 30rem;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(90deg, rgb(5, 187, 20) 0%, rgb(15, 107, 3)100%);
+    border-radius: 4px;
+}
+
+#highscore-btn {
+    background: linear-gradient(90deg, rgb(112, 21, 155)0%, rgb(71, 3, 73)100%);
+}
