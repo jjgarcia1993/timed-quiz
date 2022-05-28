@@ -1,24 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz of Truth | Bootcamp Challenge</title>
-    <link rel="stylesheet" href="./assets/css/style.css"/>
-  </head>
 
-  <body>
-    <div class="container">
-      <div id="start">
-        <h1>Quiz of Truth</h1>
-      </div>
-      <div class="links">
-        <a href="play.html" class="btn">Play</a>
-        <a href="highscores.html" id="highscore-btn" class="btn">High Scores</a>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz of Truth | Bootcamp Challenge</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+
+  <!-- Quiz container -->
+  <div class="container">
+    <div id="start">
+      <h1>Quiz of Truth</h1>
     </div>
 
+    <!-- start button -->
+    <div id="play">
+      <button type="button" id="play-btn" class="next"></button>
+    </div>
+
+    <!-- highscore button -->
+    <div id="highscores">
+      <button type="button" id="highscore-btn" class="next"></button>
+    </div>
+
+    <!-- answer buttons -->
+    <div class="buttons">
+      <button type="button" class="next"></button>
+      <button type="button" class="next"></button>
+      <button type="button" class="next"></button>
+      <button type="button" class="next"></button>
+    </div>
+
+    <!-- questions container -->
+    <div class="questions">
+      <h2 id="questions"></h2>
+      <ol type="A">
+        <li class="option"><span id="option0"></span></li>
+        <li class="option"><span id="option1"></span></li>
+        <li class="option"><span id="option2"></span></li>
+        <li class="option"><span id="option3"></span></li>
+      </ol>
+      <h4 id="stat"></h4>
+    </div>
+
+    <!-- scoreboard -->
+    <div id="scoreboard">
+      <h2 id="score-title">Your Results!</h2>
+      <h2 id="score"></h2>
+      <button type="button" id="score-btn">Return</button>
+    </div>
+
+
     <script src="./assets/js/script.js"></script>
-  </body>
+</body>
+
 </html>
