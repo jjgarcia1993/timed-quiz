@@ -1,3 +1,23 @@
+function startGame () {
+
+}
+
+
+function setNextQuestion() {
+
+}
+
+
+function selectAnswer() {
+
+}
+
+
+
+
+
+
+
 //Question bank
 var questionBank = [
     {
