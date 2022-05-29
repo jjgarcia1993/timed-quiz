@@ -23,74 +23,82 @@ var questionBank = [
     {
         question: 'What protects Earth from meteoroids and radiation?',
         answers: [
-            { text: 'The Atmosphere', correct: true },
-            { text: 'The Moon', correct: false },
-            { text: 'The Sun', correct: false },
-            { text: 'The Asteroid Belt', correct: false }
-        ]
+            'The Atmosphere',
+            'The Moon',
+            'The Sun',
+            'The Asteroid Belt'
+        ],
+        correct: "The Atmosphere"
     },
     {
         question: 'How many of our planets can be seen without a telescope?',
         answers: [
-            { text: '3', correct: false },
-            { text: '7', correct: false },
-            { text: '2', correct: false },
-            { text: '5', correct: true }
-        ]
+            '3',
+            '7',
+            '2',
+            '5'
+        ],
+        correct: "5"
     },
     {
         question: 'How long is one year on Jupiter?',
         answers: [
-            { text: '5 Earth Years', correct: false },
-            { text: '12 Earth Years', correct: true },
-            { text: '27 Earth Years', correct: false },
-            { text: '62 Earth Years', correct: false }
-        ]
+            '5 Earth Years',
+            '12 Earth Years',
+            '27 Earth Years',
+            '62 Earth Years'
+        ],
+        correct: "12 Earth Years"
     },
     {
         question: 'How many moons does Earth have?',
         answers: [
-            { text: '2', correct: false },
-            { text: '3', correct: false },
-            { text: '1', correct: true },
-            { text: '1.5', correct: false }
-        ]
+            '2',
+            '3',
+            '1',
+            '1.5'
+        ],
+        correct: "1"
     },
     {
         question: 'How old is the sun?',
         answers: [
-            { text: '10 million years', correct: false },
-            { text: '878 billion years', correct: false },
-            { text: '3 billion years', correct: false },
-            { text: '4.6 billion years', correct: true }
-        ]
+            '10 million years',
+            '878 billion years',
+            '3 billion years',
+            '4.6 billion years'
+        ],
+        correct: "4.6 billion years"
     },
     {
         question: 'How many moons are currently in our solar system?',
         answers: [
-            { text: '181', correct: true },
-            { text: '67', correct: false },
-            { text: '677', correct: false },
-            { text: '210', correct: false }
-        ]
+            '181',
+            '67',
+            '677',
+            '210'
+        ],
+        correct: "181"
     },
     {
         question: 'How long does it take the suns rays to reach Earth?',
         answers: [
-            { text: '3 days', correct: false },
-            { text: '1 week', correct: false },
-            { text: 'A few hours', correct: false },
-            { text: 'Eight minutes', correct: true }
-        ]
+            '3 days',
+            '1 week',
+            'A few hours',
+            'Eight minutes'
+        ],
+        correct: "Eight minutes"
     },
     {
         question: 'Who was the first person to walk on the moon?',
         answers: [
-            { text: 'Lance Armstrong', correct: false },
-            { text: 'Shaquille ONeal', correct: false },
-            { text: 'Neil Armstrong', correct: true },
-            { text: 'Louis Armstrong', correct: false }
-        ]
+            'Lance Armstrong',
+            'Shaquille ONeal',
+            'Neil Armstrong',
+            'Louis Armstrong'
+        ],
+        correct: "Neil Armstrong"
     },
 ]
 
