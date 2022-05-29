@@ -1,103 +1,24 @@
-var startButton = document.getElementById('start-btn')
-var nextButton = document.getElementById('next-btn')
-var questionContainerEl = document.getElementById('question-container')
-var questionEl = document.getElementById('question')
-var answerEl = document.getElementById('answer-buttons')
-let randomQuestion
-let questionIndex = 0
-
-startButton.addEventListener('click', startGame)
-
-nextButton.addEventListener('click', () => {
-    currentQuestionIndex++
-    setNextQuestion()
-})
-
-function startGame() {
-    startButton.classList.add('hide')
-    questionContainerEl.classList.remove('hide')
-    answerEl.classList.remove('hide')
-    randomQuestion = questionEl.sort(() => Math.random() - .5)
-    showQuestion()
-};
-
-
-function nextQuestion() {
-    resetState()
-    showQuestion(randomQuestion[questionIndex])
-}
-
-function showQuestion(question) {
-    questionEl.innerText = question.question
-    question.answers.forEach(answer => {
-        var button = document.createElement('button')
-        button.innerText = answer.text
-        button.classList.add('btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }questionBank
-        button.addEventListener('click', selectAnswer)
-        answerEl.appendChild(button)
-    })
-}
-
-function resetState() {
-    clearStatusClass(document.body)
-    nextButton.classList.add('hide')
-    while (answerEl.firstChild) {
-        answerEl.removeChild(answerEl.firstChild)
-    }
-}
-
-function selectAnswer(e) {
-    var selectedButton = e.target
-    var correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerEl.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
-    if (shuffledQuestions.length > currentQuestionIndex + 1) {
-        nextButton.classList.remove('hide')
-    } else {
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
-    }
-}
-
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add('correct')
-    } else {
-        element.classList.add('wrong')
-    }
-}
-
-function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-}
-
-
 //Question bank
 var questionBank = [
     {
         question: 'Which planet in our solar system is the smallest?',
         answers: [
-            { text: 'Earth', correct: false },
-            { text: 'Venus', correct: false },
-            { text: 'Pluto', correct: false },
-            { text: 'Mercury', correct: true }
-        ]
+            'Earth',
+            'Venus',
+            'Pluto',
+            'Mercury'
+        ],
+        correct: "Mercury"
     },
     {
         question: 'Titan is the name of a moon that orbits which planet?',
         answers: [
-            { text: 'Saturn', correct: true },
-            { text: 'Jupiter', correct: false },
-            { text: 'Uranus', correct: false },
-            { text: 'Earth', correct: false }
-        ]
+            'Saturn',
+            'Jupiter',
+            'Uranus',
+            'Earth'
+        ],
+        correct: "Saturn"
     },
     {
         question: 'What protects Earth from meteoroids and radiation?',
@@ -172,3 +93,126 @@ var questionBank = [
         ]
     },
 ]
+
+
+var startButton = document.getElementById('start-btn')
+var nextButton = document.getElementById('next-btn')
+var questionContainerEl = document.getElementById('question-container')
+var questionEl = document.getElementById('question')
+var answerEl = document.getElementById('answer-buttons')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var answers
+// var randomQuestion
+// var questionIndex
+
+
+// startButton.addEventListener('click', startGame)
+
+// nextButton.addEventListener('click', () => {
+//     questionIndex++
+//     nextQuestion()
+// })
+
+// function startGame() {
+//     startButton.classList.add('hide')
+//     randomQuestion = questionBank.sort(() => Math.random() - .5)
+//     questionIndex = 0
+//     questionContainerEl.classList.remove('hide')
+//     answerEl.classList.remove('hide')
+
+//     showQuestion()
+// };
+
+
+// function nextQuestion() {
+//     resetState()
+//     showQuestion(randomQuestion[questionIndex])
+// }
+
+// function showQuestion(questionBank) {
+//     questionEl.innerText = questionBank[question]
+//     questionBank.answers.forEach(answer => {
+//         var button = document.createElement('button')
+//         button.innerText = answer.text
+//         button.classList.add('btn')
+//         if (answer.correct) {
+//             button.dataset.correct = answer.correct
+//         } questionBank
+//         button.addEventListener('click', selectAnswer)
+//         answerEl.appendChild(button)
+//     })
+// }
+
+// function resetState() {
+//     clearStatusClass(document.body)
+//     nextButton.classList.add('hide')
+//     while (answerEl.firstChild) {
+//         answerEl.removeChild(answerEl.firstChild)
+//     }
+// }
+
+// function selectAnswer(e) {
+//     var selectedButton = e.target
+//     var correct = selectedButton.dataset.correct
+//     setStatusClass(document.body, correct)
+//     Array.from(answerEl.children).forEach(button => {
+//         setStatusClass(button, button.dataset.correct)
+//     })
+//     if (randomQuestion.length > questionIndex + 1) {
+//         nextButton.classList.remove('hide')
+//     } else {
+//         startButton.innerText = 'Restart'
+//         startButton.classList.remove('hide')
+//     }
+// }
+
+// function setStatusClass(element, correct) {
+//     clearStatusClass(element)
+//     if (correct) {
+//         element.classList.add('correct')
+//     } else {
+//         element.classList.add('wrong')
+//     }
+// }
+
+// function clearStatusClass(element) {
+//     element.classList.remove('correct')
+//     element.classList.remove('wrong')
+// }
+
+
