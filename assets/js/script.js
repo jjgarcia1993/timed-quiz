@@ -119,7 +119,7 @@ const startButton = document.getElementById('start-btn')
 const questionContainerEl = document.getElementById('question-container')
 const questionEl = document.getElementById('question')
 const answerEl = document.getElementById('answer-buttons')
-const scoreBoardEl = document.getElementById('scoreBoard')
+const scoreBoardEl = document.getElementById('scoreboard')
 const scoreCardEl = document.getElementById('scorecard')
 
 var questionIndex = 0
@@ -136,8 +136,8 @@ var saveScore = function () {
 
 // start quiz function
 function startQuiz() {
-    startButton.classList.add('hide')
-    answerEl.classList.remove('hide')
+    startButton.classList.add('hide');
+    answerEl.classList.remove('hide');
     showQuestions()
     getAnswers()
 }
@@ -181,8 +181,7 @@ function selectAnswer(event) {
             showQuestions();
             getAnswers();
         }
-        else if (questionIndex >= 10); {
-            console.log(score)
+        else if(questionIndex == 10)  {
             goToScore();
         }
     }
@@ -190,8 +189,8 @@ function selectAnswer(event) {
 }
 
 function goToScore() {
-    questionContainerEl.classList.add('hide')
-    // scoreBoardEl.classList.remove('hide')
+    questionEl.classList.add('hide')
+    answerEl.classList.add('hide');
+    scoreBoardEl.classList.remove('hide');
     scoreCardEl.innerText = score
-    console.log('Remove!?')
 }
