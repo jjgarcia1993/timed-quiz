@@ -118,13 +118,40 @@ const nextButton = document.getElementById('next-btn')
 const questionContainerEl = document.getElementById('question-container')
 const questionEl = document.getElementById('question')
 const answerEl = document.getElementById('answer-buttons')
-const questionIndex = 0
 
-let shuffledQuestions
+var questionIndex
+var currentQuestion
+var shuffledQuestions
 
+
+// // get random question function
+// for (var i = 0; i < questionBank.length; i++) {
+//     var thisItem = questionBank[i];
+//     answerEl.innerText = questionBank
+// }
 
 // start button listener
 startButton.addEventListener('click', startQuiz)
+
+// next button listener
+nextButton.addEventListener('click', setNextQuestion)
+
+
+// next question function
+function setNextQuestion() {
+    resetState()
+    showQuestions();
+}
+
+function resetState() {
+    clearStatusClass(document.body)
+}
+
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+}
+
 
 // start quiz function
 function startQuiz() {
@@ -135,40 +162,24 @@ function startQuiz() {
 }
 
 // show question function
-function showQuestions(question) {
-    questionEl.innerText = questionBank.question
-    questionBank.forEach(answer => {
-        const button = document.createElement('button')
-        button.innerText = answer.text
-        button.classList.add('btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
+function showQuestions() {
+    // get random question
+    const randomQuestion = questionBank[Math.floor(Math.random() * questionBank.length)]; {
+        // for loop to add up question counter?
+        for (var i = 0; i < questionBank.length; i++) {
+            questionEl.innerText = randomQuestion.question
         }
-        button.addEventListener('click', selectAnswer)
-        answerEl.appendChild(button)
-    })
-}
-
-// get random question function
-for (var i = 0; i < questionBank.length; i++) {
-    var thisItem = questionBank[i];
-    answerEl.innerText = questionBank
-}
-
-
-function setNextQuestion() {
-    resetState()
-    showQuestions(shuffledQuestions[questionIndex])
-}
-
-
-function resetState() {
-    clearStatusClass(document.body)
-    nextButton.classList.add('hide')
-    while (answerEl.firstChild) {
-        answerEl.removeChild(answerEl.firstChild)
     }
 }
+
+// show answer function
+function showAnswers() {
+    
+}
+
+
+
+
 
 function selectAnswer(answerEl) {
     const selectedButton = e.target
@@ -185,16 +196,12 @@ function selectAnswer(answerEl) {
     }
 }
 
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add('correct')
-    } else {
-        element.classList.add('wrong')
-    }
-}
+// function setStatusClass(element, correct) {
+//     clearStatusClass(element)
+//     if (correct) {
+//         element.classList.add('correct')
+//     } else {
+//         element.classList.add('wrong')
+//     }
+// }
 
-function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-}
