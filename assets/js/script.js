@@ -124,12 +124,14 @@ var saveScore = function () {
     localStorage.setItem('score', score)
 }
 
+
 // start quiz function
 function startQuiz() {
     startButton.classList.add('hide');
     answerEl.classList.remove('hide');
     showQuestions()
     getAnswers()
+
 }
 
 // start button listener
@@ -179,11 +181,14 @@ function selectAnswer(event) {
             goToScore();
         }
     }
-    if (selectedButton.matches("button[correctValue = 'wrong']")) {
+    else if (selectedButton.matches("button[correctValue = 'wrong']")) {
         questionIndex++
         if (questionIndex < 10) {
             showQuestions();
             getAnswers();
+        }
+        else {
+            goToScore();
         }
     }
 }
@@ -192,5 +197,5 @@ function goToScore() {
     questionEl.classList.add('hide')
     answerEl.classList.add('hide');
     scoreBoardEl.classList.remove('hide');
-    scoreCardEl.innerText = score
+    scoreCardEl.innerText = 'Score of ' + score
 }
