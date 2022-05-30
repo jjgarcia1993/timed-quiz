@@ -8,8 +8,7 @@ const questionBank = [
             'Pluto',
             'Mercury'
         ],
-        correct: "Mercury",
-        incorrect: 'incorrect'
+        correct: ['wrong', 'wrong', 'wrong', 'correct']
     },
     {
         question: 'Titan is the name of a moon that orbits which planet?',
@@ -19,8 +18,7 @@ const questionBank = [
             'Uranus',
             'Earth'
         ],
-        correct: "Saturn",
-        incorrect: 'incorrect'
+        correct: ['correct', 'wrong', 'wrong', 'wrong']
     },
     {
         question: 'What protects Earth from meteoroids and radiation?',
@@ -30,8 +28,7 @@ const questionBank = [
             'The Sun',
             'The Asteroid Belt'
         ],
-        correct: "The Atmosphere",
-        incorrect: 'incorrect'
+        correct: ['correct', 'wrong', 'wrong', 'wrong']
     },
     {
         question: 'How many of our planets can be seen without a telescope?',
@@ -41,8 +38,7 @@ const questionBank = [
             '2',
             '5'
         ],
-        correct: "5",
-        incorrect: 'incorrect'
+        correct: ['wrong', 'wrong', 'wrong', 'correct']
     },
     {
         question: 'How long is one year on Jupiter?',
@@ -52,8 +48,7 @@ const questionBank = [
             '27 Earth Years',
             '62 Earth Years'
         ],
-        correct: "12 Earth Years",
-        incorrect: 'incorrect'
+        correct: ['wrong', 'correct', 'wrong', 'wrong']
     },
     {
         question: 'How many moons does Earth have?',
@@ -63,8 +58,7 @@ const questionBank = [
             '1',
             '1.5'
         ],
-        correct: "1",
-        incorrect: 'incorrect'
+        correct: ['wrong', 'wrong', 'correct', 'wrong']
     },
     {
         question: 'How old is the sun?',
@@ -74,8 +68,7 @@ const questionBank = [
             '3 billion years',
             '4.6 billion years'
         ],
-        correct: "4.6 billion years",
-        incorrect: 'incorrect'
+        correct: ['wrong', 'wrong', 'wrong', 'correct']
     },
     {
         question: 'How many moons are currently in our solar system?',
@@ -85,8 +78,7 @@ const questionBank = [
             '677',
             '210'
         ],
-        correct: "181",
-        incorrect: 'incorrect'
+        correct: ['correct', 'wrong', 'wrong', 'wrong']
     },
     {
         question: 'How long does it take the suns rays to reach Earth?',
@@ -96,8 +88,7 @@ const questionBank = [
             'A few hours',
             'Eight minutes'
         ],
-        correct: "Eight minutes",
-        incorrect: 'incorrect'
+        correct: ['wrong', 'wrong', 'wrong', 'correct']
     },
     {
         question: 'Who was the first person to walk on the moon?',
@@ -107,8 +98,7 @@ const questionBank = [
             'Neil Armstrong',
             'Louis Armstrong'
         ],
-        correct: "Neil Armstrong",
-        incorrect: 'incorrect'
+        correct: ['wrong', 'wrong', 'correct', 'wrong']
     },
 ]
 
@@ -166,26 +156,36 @@ function getAnswers() {
     buttonTwo.textContent = questionBank[questionIndex].answers[1]
     buttonThree.textContent = questionBank[questionIndex].answers[2]
     buttonFour.textContent = questionBank[questionIndex].answers[3]
-    buttonOne.setAttribute("correct-answer", questionBank[questionIndex].answers[0])
-    buttonTwo.setAttribute("correct-answer", questionBank[questionIndex].answers[1])
-    buttonThree.setAttribute("correct-answer", questionBank[questionIndex].answers[2])
-    buttonFour.setAttribute("correct-answer", questionBank[questionIndex].answers[3])
+    buttonOne.setAttribute("answerValue", questionBank[questionIndex].answers[0])
+    buttonTwo.setAttribute("answerValue", questionBank[questionIndex].answers[1])
+    buttonThree.setAttribute("answerValue", questionBank[questionIndex].answers[2])
+    buttonFour.setAttribute("answerValue", questionBank[questionIndex].answers[3])
+    buttonOne.setAttribute("correctValue", questionBank[questionIndex].correct[0])
+    buttonTwo.setAttribute("correctValue", questionBank[questionIndex].correct[1])
+    buttonThree.setAttribute("correctValue", questionBank[questionIndex].correct[2])
+    buttonFour.setAttribute("correctValue", questionBank[questionIndex].correct[3])
 }
 
 function selectAnswer(event) {
     const selectedButton = event.target
-    if (selectedButton.matches("button[correct-answer = '" + questionBank[questionIndex].correct + "']")) {
+    if (selectedButton.matches("button[correctValue = 'correct']")) {
         saveScore(score++)
         questionIndex++
         if (questionIndex < 10) {
             showQuestions();
             getAnswers();
         }
-        else if(questionIndex == 10)  {
+        else {
             goToScore();
         }
     }
-
+    if (selectedButton.matches("button[correctValue = 'wrong']")) {
+        questionIndex++
+        if (questionIndex < 10) {
+            showQuestions();
+            getAnswers();
+        }
+    }
 }
 
 function goToScore() {
