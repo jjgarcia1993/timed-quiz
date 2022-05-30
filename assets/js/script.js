@@ -104,7 +104,7 @@ const questionBank = [
 
 
 var arrayEl = [
-    
+
 ]
 
 
@@ -112,19 +112,25 @@ var arrayEl = [
 
 // references
 const startButton = document.getElementById('start-btn')
-const nextButton = document.getElementById('next-btn')
 const questionContainerEl = document.getElementById('question-container')
 const questionEl = document.getElementById('question')
 const answerEl = document.getElementById('answer-buttons')
+
+
 
 var questionIndex = 0
 var currentQuestion
 var shuffledQuestions
 
+var score = 0
+// save score
+var saveScore = function () {
+    localStorage.setItem('score', score)
+}
+
 // start quiz function
 function startQuiz() {
     startButton.classList.add('hide')
-    nextButton.classList.remove('hide')
     answerEl.classList.remove('hide')
     showQuestions()
     getAnswers()
@@ -134,24 +140,9 @@ function startQuiz() {
 // start button listener
 startButton.addEventListener('click', startQuiz)
 
-// next button listener
-nextButton.addEventListener('click', setNextQuestion)
-
 // select answer listener
 answerEl.addEventListener('click', selectAnswer)
 
-
-// next question function
-function setNextQuestion() {
-    questionIndex++
-    if (questionIndex < 10) {
-        showQuestions();
-        getAnswers();
-    }
-    else {
-        goToScore()
-    }
-}
 
 
 // show question function
@@ -172,24 +163,29 @@ function getAnswers() {
     buttonTwo.textContent = questionBank[questionIndex].answers[1]
     buttonThree.textContent = questionBank[questionIndex].answers[2]
     buttonFour.textContent = questionBank[questionIndex].answers[3]
-    buttonOne.setAttribute("correct-answer", questionBank[questionIndex].correct)
-    buttonTwo.setAttribute("correct-answer", questionBank[questionIndex].correct)
-    buttonThree.setAttribute("correct-answer", questionBank[questionIndex].correct)
-    buttonFour.setAttribute("correct-answer", questionBank[questionIndex].correct)
+    buttonOne.setAttribute("correct-answer", questionBank[questionIndex].answers[0])
+    buttonTwo.setAttribute("correct-answer", questionBank[questionIndex].answers[1])
+    buttonThree.setAttribute("correct-answer", questionBank[questionIndex].answers[2])
+    buttonFour.setAttribute("correct-answer", questionBank[questionIndex].answers[3])
 }
 
 function selectAnswer(event) {
     const selectedButton = event.target
-    if(selectedButton.matches("button[correct-answer = '" + questionBank[questionIndex].correct + "']")) {
-        arrayEl.push('correct')
-    }
-    else if (selectedButton.matches(nextButton)) {
-        arrayEl.push('null')
+    if (selectedButton.matches("button[correct-answer = '" + questionBank[questionIndex].correct + "']")) {
+        saveScore(score++)
+        questionIndex++
+        if (questionIndex < 10) {
+            showQuestions();
+            getAnswers();
+        }
+        else {
+            goToScore()
+        }
+        console.log(score)
     }
     else {
-        arrayEl.push('Incorrect')
+        console.log('Incorrect')
     }
-    console.log(arrayEl)
 }
 
 

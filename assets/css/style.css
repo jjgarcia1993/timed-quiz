@@ -74,8 +74,7 @@ body.wrong {
     background-color: var(--quatenary-color);
 }
 
-.start-btn,
-.next-btn {
+.start-btn {
     background-color: #5f1bff;
     font-size: 1.6rem;
     font-weight: 16px;
@@ -83,8 +82,7 @@ body.wrong {
     border-radius: 15px;
 }
 
-.start-btn:hover,
-.next-btn:hover {
+.start-btn:hover {
     background-color: #19034d;
     font-size: 2rem;
     color: rgb(168, 98, 248)
