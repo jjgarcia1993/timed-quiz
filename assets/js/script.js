@@ -1,6 +1,6 @@
 //Question bank
 const questionBank = [
-    numberOne = {
+    {
         question: 'Which planet in our solar system is the smallest?',
         answers: [
             'Earth',
@@ -10,7 +10,7 @@ const questionBank = [
         ],
         correct: "Mercury"
     },
-    numberTwo = {
+    {
         question: 'Titan is the name of a moon that orbits which planet?',
         answers: [
             'Saturn',
@@ -20,7 +20,7 @@ const questionBank = [
         ],
         correct: "Saturn"
     },
-    numberThree = {
+    {
         question: 'What protects Earth from meteoroids and radiation?',
         answers: [
             'The Atmosphere',
@@ -30,7 +30,7 @@ const questionBank = [
         ],
         correct: "The Atmosphere"
     },
-    numberFour = {
+    {
         question: 'How many of our planets can be seen without a telescope?',
         answers: [
             '3',
@@ -40,7 +40,7 @@ const questionBank = [
         ],
         correct: "5"
     },
-    numberFive = {
+    {
         question: 'How long is one year on Jupiter?',
         answers: [
             '5 Earth Years',
@@ -50,7 +50,7 @@ const questionBank = [
         ],
         correct: "12 Earth Years"
     },
-    numberSix = {
+    {
         question: 'How many moons does Earth have?',
         answers: [
             '2',
@@ -60,7 +60,7 @@ const questionBank = [
         ],
         correct: "1"
     },
-    numberSeven = {
+    {
         question: 'How old is the sun?',
         answers: [
             '10 million years',
@@ -70,7 +70,7 @@ const questionBank = [
         ],
         correct: "4.6 billion years"
     },
-    numberEight = {
+    {
         question: 'How many moons are currently in our solar system?',
         answers: [
             '181',
@@ -80,7 +80,7 @@ const questionBank = [
         ],
         correct: "181"
     },
-    numberNine = {
+    {
         question: 'How long does it take the suns rays to reach Earth?',
         answers: [
             '3 days',
@@ -90,7 +90,7 @@ const questionBank = [
         ],
         correct: "Eight minutes"
     },
-    numberTen = {
+    {
         question: 'Who was the first person to walk on the moon?',
         answers: [
             'Lance Armstrong',
@@ -100,6 +100,11 @@ const questionBank = [
         ],
         correct: "Neil Armstrong"
     },
+]
+
+
+var arrayEl = [
+    
 ]
 
 
@@ -132,14 +137,19 @@ startButton.addEventListener('click', startQuiz)
 // next button listener
 nextButton.addEventListener('click', setNextQuestion)
 
+// select answer listener
+answerEl.addEventListener('click', selectAnswer)
+
 
 // next question function
 function setNextQuestion() {
-    showQuestions();
-    getAnswers();
     questionIndex++
-    if (questionIndex === 10) {
-        goToScore();
+    if (questionIndex < 10) {
+        showQuestions();
+        getAnswers();
+    }
+    else {
+        goToScore()
     }
 }
 
@@ -147,8 +157,8 @@ function setNextQuestion() {
 // show question function
 function showQuestions() {
     // get random question
-    const randomQuestion = questionBank[Math.floor(Math.random() * questionBank.length)]; {
-        questionEl.innerText = randomQuestion.question
+    const randomQuestion = questionBank[questionIndex].question; {
+        questionEl.innerText = randomQuestion
     }
 }
 
@@ -162,43 +172,28 @@ function getAnswers() {
     buttonTwo.textContent = questionBank[questionIndex].answers[1]
     buttonThree.textContent = questionBank[questionIndex].answers[2]
     buttonFour.textContent = questionBank[questionIndex].answers[3]
+    buttonOne.setAttribute("correct-answer", questionBank[questionIndex].correct)
+    buttonTwo.setAttribute("correct-answer", questionBank[questionIndex].correct)
+    buttonThree.setAttribute("correct-answer", questionBank[questionIndex].correct)
+    buttonFour.setAttribute("correct-answer", questionBank[questionIndex].correct)
 }
 
-function selectAnswer(answerEl) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerEl.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
-    if (shuffledQuestions.length > questionIndex + 1) {
-        nextButton.classList.remove('hide')
-    } else {
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
+function selectAnswer(event) {
+    const selectedButton = event.target
+    if(selectedButton.matches("button[correct-answer = '" + questionBank[questionIndex].correct + "']")) {
+        arrayEl.push('correct')
     }
-}
-
-
-
-// show answer function
-function showAnswers() {
-    answerEl.btn1.innerText = randomAnswer
-}
-
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add('correct')
-    } else {
-        element.classList.add('wrong')
+    else if (selectedButton.matches(nextButton)) {
+        arrayEl.push('null')
     }
+    else {
+        arrayEl.push('Incorrect')
+    }
+    console.log(arrayEl)
 }
+
+
 
 function goToScore() {
 
 }
-
-
-
-
