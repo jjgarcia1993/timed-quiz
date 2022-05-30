@@ -8,7 +8,8 @@ const questionBank = [
             'Pluto',
             'Mercury'
         ],
-        correct: "Mercury"
+        correct: "Mercury",
+        incorrect: 'incorrect'
     },
     {
         question: 'Titan is the name of a moon that orbits which planet?',
@@ -18,7 +19,8 @@ const questionBank = [
             'Uranus',
             'Earth'
         ],
-        correct: "Saturn"
+        correct: "Saturn",
+        incorrect: 'incorrect'
     },
     {
         question: 'What protects Earth from meteoroids and radiation?',
@@ -28,7 +30,8 @@ const questionBank = [
             'The Sun',
             'The Asteroid Belt'
         ],
-        correct: "The Atmosphere"
+        correct: "The Atmosphere",
+        incorrect: 'incorrect'
     },
     {
         question: 'How many of our planets can be seen without a telescope?',
@@ -38,7 +41,8 @@ const questionBank = [
             '2',
             '5'
         ],
-        correct: "5"
+        correct: "5",
+        incorrect: 'incorrect'
     },
     {
         question: 'How long is one year on Jupiter?',
@@ -48,7 +52,8 @@ const questionBank = [
             '27 Earth Years',
             '62 Earth Years'
         ],
-        correct: "12 Earth Years"
+        correct: "12 Earth Years",
+        incorrect: 'incorrect'
     },
     {
         question: 'How many moons does Earth have?',
@@ -58,7 +63,8 @@ const questionBank = [
             '1',
             '1.5'
         ],
-        correct: "1"
+        correct: "1",
+        incorrect: 'incorrect'
     },
     {
         question: 'How old is the sun?',
@@ -68,7 +74,8 @@ const questionBank = [
             '3 billion years',
             '4.6 billion years'
         ],
-        correct: "4.6 billion years"
+        correct: "4.6 billion years",
+        incorrect: 'incorrect'
     },
     {
         question: 'How many moons are currently in our solar system?',
@@ -78,7 +85,8 @@ const questionBank = [
             '677',
             '210'
         ],
-        correct: "181"
+        correct: "181",
+        incorrect: 'incorrect'
     },
     {
         question: 'How long does it take the suns rays to reach Earth?',
@@ -88,7 +96,8 @@ const questionBank = [
             'A few hours',
             'Eight minutes'
         ],
-        correct: "Eight minutes"
+        correct: "Eight minutes",
+        incorrect: 'incorrect'
     },
     {
         question: 'Who was the first person to walk on the moon?',
@@ -98,31 +107,28 @@ const questionBank = [
             'Neil Armstrong',
             'Louis Armstrong'
         ],
-        correct: "Neil Armstrong"
+        correct: "Neil Armstrong",
+        incorrect: 'incorrect'
     },
 ]
 
 
-var arrayEl = [
-
-]
-
-
-// console.log(questionBank, questionIndex.correct);
 
 // references
 const startButton = document.getElementById('start-btn')
 const questionContainerEl = document.getElementById('question-container')
 const questionEl = document.getElementById('question')
 const answerEl = document.getElementById('answer-buttons')
-
-
+const scoreBoardEl = document.getElementById('scoreBoard')
+const scoreCardEl = document.getElementById('scorecard')
 
 var questionIndex = 0
 var currentQuestion
 var shuffledQuestions
 
+
 var score = 0
+
 // save score
 var saveScore = function () {
     localStorage.setItem('score', score)
@@ -136,14 +142,11 @@ function startQuiz() {
     getAnswers()
 }
 
-
 // start button listener
 startButton.addEventListener('click', startQuiz)
 
 // select answer listener
 answerEl.addEventListener('click', selectAnswer)
-
-
 
 // show question function
 function showQuestions() {
@@ -178,18 +181,17 @@ function selectAnswer(event) {
             showQuestions();
             getAnswers();
         }
-        else {
-            goToScore()
+        else if (questionIndex >= 10); {
+            console.log(score)
+            goToScore();
         }
-        console.log(score)
     }
-    else {
-        console.log('Incorrect')
-    }
+
 }
 
-
-
 function goToScore() {
-
+    questionContainerEl.classList.add('hide')
+    // scoreBoardEl.classList.remove('hide')
+    scoreCardEl.innerText = score
+    console.log('Remove!?')
 }
