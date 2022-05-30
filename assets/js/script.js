@@ -1,7 +1,6 @@
 //Question bank
 const questionBank = [
-    {
-        number: 1,
+    numberOne = {
         question: 'Which planet in our solar system is the smallest?',
         answers: [
             'Earth',
@@ -11,8 +10,7 @@ const questionBank = [
         ],
         correct: "Mercury"
     },
-    {
-        number: 2,
+    numberTwo = {
         question: 'Titan is the name of a moon that orbits which planet?',
         answers: [
             'Saturn',
@@ -22,8 +20,7 @@ const questionBank = [
         ],
         correct: "Saturn"
     },
-    {
-        number: 3,
+    numberThree = {
         question: 'What protects Earth from meteoroids and radiation?',
         answers: [
             'The Atmosphere',
@@ -33,8 +30,7 @@ const questionBank = [
         ],
         correct: "The Atmosphere"
     },
-    {
-        number: 4,
+    numberFour = {
         question: 'How many of our planets can be seen without a telescope?',
         answers: [
             '3',
@@ -44,8 +40,7 @@ const questionBank = [
         ],
         correct: "5"
     },
-    {
-        number: 5,
+    numberFive = {
         question: 'How long is one year on Jupiter?',
         answers: [
             '5 Earth Years',
@@ -55,8 +50,7 @@ const questionBank = [
         ],
         correct: "12 Earth Years"
     },
-    {
-        number: 6,
+    numberSix = {
         question: 'How many moons does Earth have?',
         answers: [
             '2',
@@ -66,8 +60,7 @@ const questionBank = [
         ],
         correct: "1"
     },
-    {
-        number: 7,
+    numberSeven = {
         question: 'How old is the sun?',
         answers: [
             '10 million years',
@@ -77,8 +70,7 @@ const questionBank = [
         ],
         correct: "4.6 billion years"
     },
-    {
-        number: 8,
+    numberEight = {
         question: 'How many moons are currently in our solar system?',
         answers: [
             '181',
@@ -88,8 +80,7 @@ const questionBank = [
         ],
         correct: "181"
     },
-    {
-        number: 9,
+    numberNine = {
         question: 'How long does it take the suns rays to reach Earth?',
         answers: [
             '3 days',
@@ -99,8 +90,7 @@ const questionBank = [
         ],
         correct: "Eight minutes"
     },
-    {
-        number: 10,
+    numberTen = {
         question: 'Who was the first person to walk on the moon?',
         answers: [
             'Lance Armstrong',
@@ -112,6 +102,9 @@ const questionBank = [
     },
 ]
 
+
+// console.log(questionBank, questionIndex.correct);
+
 // references
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
@@ -119,16 +112,19 @@ const questionContainerEl = document.getElementById('question-container')
 const questionEl = document.getElementById('question')
 const answerEl = document.getElementById('answer-buttons')
 
-var questionIndex
+var questionIndex = 0
 var currentQuestion
 var shuffledQuestions
 
+// start quiz function
+function startQuiz() {
+    startButton.classList.add('hide')
+    nextButton.classList.remove('hide')
+    answerEl.classList.remove('hide')
+    showQuestions()
+    getAnswers()
+}
 
-// // get random question function
-// for (var i = 0; i < questionBank.length; i++) {
-//     var thisItem = questionBank[i];
-//     answerEl.innerText = questionBank
-// }
 
 // start button listener
 startButton.addEventListener('click', startQuiz)
@@ -139,47 +135,34 @@ nextButton.addEventListener('click', setNextQuestion)
 
 // next question function
 function setNextQuestion() {
-    resetState()
     showQuestions();
+    getAnswers();
+    questionIndex++
+    if (questionIndex === 10) {
+        goToScore();
+    }
 }
 
-function resetState() {
-    clearStatusClass(document.body)
-}
-
-function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-}
-
-
-// start quiz function
-function startQuiz() {
-    startButton.classList.add('hide')
-    nextButton.classList.remove('hide')
-    answerEl.classList.remove('hide')
-    showQuestions()
-}
 
 // show question function
 function showQuestions() {
     // get random question
     const randomQuestion = questionBank[Math.floor(Math.random() * questionBank.length)]; {
-        // for loop to add up question counter?
-        for (var i = 0; i < questionBank.length; i++) {
-            questionEl.innerText = randomQuestion.question
-        }
+        questionEl.innerText = randomQuestion.question
     }
 }
 
-// show answer function
-function showAnswers() {
-    
+// get answers
+function getAnswers() {
+    var buttonOne = document.querySelector('.btn1');
+    var buttonTwo = document.querySelector('.btn2');
+    var buttonThree = document.querySelector('.btn3');
+    var buttonFour = document.querySelector('.btn4');
+    buttonOne.textContent = questionBank[questionIndex].answers[0]
+    buttonTwo.textContent = questionBank[questionIndex].answers[1]
+    buttonThree.textContent = questionBank[questionIndex].answers[2]
+    buttonFour.textContent = questionBank[questionIndex].answers[3]
 }
-
-
-
-
 
 function selectAnswer(answerEl) {
     const selectedButton = e.target
@@ -196,12 +179,26 @@ function selectAnswer(answerEl) {
     }
 }
 
-// function setStatusClass(element, correct) {
-//     clearStatusClass(element)
-//     if (correct) {
-//         element.classList.add('correct')
-//     } else {
-//         element.classList.add('wrong')
-//     }
-// }
+
+
+// show answer function
+function showAnswers() {
+    answerEl.btn1.innerText = randomAnswer
+}
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('wrong')
+    }
+}
+
+function goToScore() {
+
+}
+
+
+
 
