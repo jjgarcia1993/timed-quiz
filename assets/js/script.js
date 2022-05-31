@@ -114,11 +114,14 @@ var questionIndex = 0
 var currentQuestion
 var shuffledQuestions
 var score = 0
+var interval
 
 // save score
 var saveScore = function () {
     localStorage.setItem('score', score)
+
 }
+
 
 // start quiz function
 function startQuiz() {
@@ -136,6 +139,10 @@ function startQuiz() {
             goToScore()
         }
     }, 1000);
+    if (questionIndex == 10) {
+        clearInterval(interval);
+        goToScore()
+    }
 }
 
 // start button listener
@@ -204,4 +211,32 @@ function goToScore() {
     answerEl.classList.add('hide');
     scoreBoardEl.classList.remove('hide');
     scoreCardEl.innerText = score + ' out of ' + questionBank.length
+    nameEntry()
+}
+
+function nameEntry() {
+    var ending = window.confirm('Your final score is ' + score + ' out of ' + questionBank.length + '. ' + 'Would you like to save your score?');
+    if (ending) {
+        var entry = window.prompt('Please enter your Name or initials to save your score.');
+        if (entry === "" || entry === "null") {
+            window.alert("You need to provide a valid answer! Please try again.");
+            return nameEntry();
+        }
+        else {
+            localStorage.setItem(entry, score)
+        }
+    }
+    restartQuiz()
+}
+
+function restartQuiz() {
+    window.confirm("Thanks for playing! Would you like to play again?");
+    if (confirm == true) {
+        location.reload();
+        startQuiz()
+    }
+    else {
+        window.alert('Good bye!')
+    }
+
 }

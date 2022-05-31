@@ -8,8 +8,6 @@
 :root {
     --primary-color: #4bbedb;
     --secondary-color: #081874;
-    --tertiary-color: #10a023;
-    --quatenary-color: #ad1111;
 }
 
 body {
@@ -23,14 +21,6 @@ body {
     align-items: center;
     background-image: linear-gradient(var(--primary-color), var(--secondary-color));
 
-}
-
-body.right {
-    color: var(--tertiary-color);
-}
-
-body.wrong {
-    columns: var(--quatenary-color);
 }
 
 .container {
@@ -63,15 +53,6 @@ body.wrong {
 .btn1:hover, .btn2:hover, .btn3:hover, .btn4:hover {
     background-color: #19034d;
     color: rgb(168, 98, 248)
-}
-
-.btn.correct {
-    background-color: var(--tertiary-color);
-
-}
-
-.btn.wrong {
-    background-color: var(--quatenary-color);
 }
 
 .start-btn {
