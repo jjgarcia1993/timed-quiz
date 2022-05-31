@@ -102,8 +102,6 @@ const questionBank = [
     },
 ]
 
-
-
 // references
 const startButton = document.getElementById('start-btn')
 const questionContainerEl = document.getElementById('question-container')
@@ -115,8 +113,6 @@ const scoreCardEl = document.getElementById('scorecard')
 var questionIndex = 0
 var currentQuestion
 var shuffledQuestions
-
-
 var score = 0
 
 // save score
@@ -124,14 +120,22 @@ var saveScore = function () {
     localStorage.setItem('score', score)
 }
 
-
 // start quiz function
 function startQuiz() {
     startButton.classList.add('hide');
     answerEl.classList.remove('hide');
     showQuestions()
     getAnswers()
-
+    var count = 5;
+    var interval = setInterval(function () {
+        document.getElementById('count').innerHTML = count;
+        count--;
+        if (count < 0) {
+            clearInterval(interval);
+            document.getElementById('count').innerHTML = 'Time is up!';
+            goToScore()
+        }
+    }, 1000);
 }
 
 // start button listener
@@ -168,6 +172,7 @@ function getAnswers() {
     buttonFour.setAttribute("correctValue", questionBank[questionIndex].correct[3])
 }
 
+// select answer function
 function selectAnswer(event) {
     const selectedButton = event.target
     if (selectedButton.matches("button[correctValue = 'correct']")) {
@@ -193,9 +198,10 @@ function selectAnswer(event) {
     }
 }
 
+// final score function
 function goToScore() {
     questionEl.classList.add('hide')
     answerEl.classList.add('hide');
     scoreBoardEl.classList.remove('hide');
-    scoreCardEl.innerText = 'Score of ' + score
+    scoreCardEl.innerText = score + ' out of ' + questionBank.length
 }
