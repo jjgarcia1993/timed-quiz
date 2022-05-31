@@ -129,7 +129,7 @@ function startQuiz() {
     answerEl.classList.remove('hide');
     showQuestions()
     getAnswers()
-    var count = 5;
+    var count = 29;
     var interval = setInterval(function () {
         document.getElementById('count').innerHTML = count;
         count--;
@@ -231,12 +231,10 @@ function nameEntry() {
 
 function restartQuiz() {
     window.confirm("Thanks for playing! Would you like to play again?");
-    if (confirm == true) {
+    if (confirm) {
         location.reload();
-        startQuiz()
     }
-    else {
+    if (!confirm) {
         window.alert('Good bye!')
     }
-
-}
+} 
